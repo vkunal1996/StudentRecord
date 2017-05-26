@@ -9,10 +9,7 @@ void Header(void)
         cout<<"\t\t-------------------------------------------\n";
 
 }
-void MainMenu(void)
-{
 
-}
 
 class StudentRecord
 {
@@ -24,6 +21,10 @@ class StudentRecord
     int RollNumber[100];
     float Comp[100],Sci[100],Mth[100],Eng[100],Pun[100],TOTAL[100],Per[100];
 
+                                    char tempname[100];
+                                    int tempRoll;
+                                    int temp;
+
     public:
     StudentRecord()
     {
@@ -31,10 +32,11 @@ class StudentRecord
     }
     void MainMenu(void)
     {
-        Header();
+
         char choice;
         do
         {
+            Header();
         cout<<"\n\n\t\t\t\t  MAIN MENU\n";
         cout<<"\t\t-------------------------------------------\n\n";
 
@@ -43,7 +45,7 @@ class StudentRecord
         cout<<"\t\t\t    3.)EXIT\n";
         cout<<"\n\t\t\t    Enter Choice : ";
         cin>>choice;
-        system("clear");
+        system("cls");
             switch(choice)
             {
                 case '1':
@@ -86,7 +88,7 @@ class StudentRecord
                 cout<<"\t\t\t    6.)MAIN MENU\n";
                 cout<<"\n\t\t\t    Enter Choice : ";
                 cin>>choice;
-                system("clear");
+                system("cls");
                 switch(choice)
                 {
                     case '1':
@@ -109,7 +111,7 @@ class StudentRecord
                     break;
                 }
 
-            }while(choice!='3');
+            }while(choice!='6');
 
     }
         void StudentRecord::ResultMenu()
@@ -185,8 +187,8 @@ class StudentRecord
                     }
                 count++;
                 cout<<"\n\n\tRecord Created\n\n";
-                cin.get();
-                system("clear");
+                system("pause");
+                system("cls");
 
 
 
@@ -203,13 +205,44 @@ class StudentRecord
                         {
                             TOTAL[i]=Mth[i]+Comp[i]+Sci[i]+Eng[i]+Pun[i];
                             Per[i]=((float)TOTAL[i]/500)*100;
-                            cout<<"\t"<<NameofStudent[i]<<"\t"<<RollNumber[i]<<"\t"<<Mth[i]<<"\t"<<Comp[i]<<"\t"<<Sci[i]<<"\t"<<Eng[i]<<"\t"<<Pun[i]<<"\t"<<TOTAL[i]<<"\t"<<Per[i]<<"\n";
+                            cout<<"\t"<<NameofStudent[i]<<"\t"<<RollNumber[i]<<"\t  "<<Mth[i]<<"\t"<<Comp[i]<<"\t"<<Sci[i]<<"\t"<<Eng[i]<<"\t"<<Pun[i]<<"\t"<<TOTAL[i]<<"\t"<<Per[i]<<"\n";
                         }
-                        //cin.get(a);
+                        system("pause");
+                        system("cls");
 
                 }
                     void StudentRecord::Search()
                     {
+                            Header();
+                            temp=0;
+                            cout<<"\n\n\t\t\t\tSearched Record\n";
+                            cout<<"\t\t-------------------------------------------\n\n";
+                            cout<<"\tNAME\tROLL NO\t   MT\tCP\tSC\tEN\tPN\tTOTAL\t%ge\n";
+                            cout<<"\t---------------------------------------------------------------------\n";
+                            cout<<"\tEnter the Name of the Student ";
+                            cin>>tempname;
+                            cout<<"\tEnter the Roll Number : ";
+                            cin>>tempRoll;
+                                for(i=0;i<count;i++)
+                                {
+                                    if(strcmp(tempname,NameofStudent[i])==0&&tempRoll==RollNumber[i])
+                                    {
+                                           temp=1;
+                                            cout<<"\tNAME\tROLL NO\t   MT\tCP\tSC\tEN\tPN\tTOTAL\t%ge\n";
+                                            cout<<"\t---------------------------------------------------------------------\n";
+                                            TOTAL[i]=Mth[i]+Comp[i]+Sci[i]+Eng[i]+Pun[i];
+                                            Per[i]=((float)TOTAL[i]/500)*100;
+                                            cout<<"\t"<<NameofStudent[i]<<"\t"<<RollNumber[i]<<"\t  "<<Mth[i]<<"\t"<<Comp[i]<<"\t"<<Sci[i]<<"\t"<<Eng[i]<<"\t"<<Pun[i]<<"\t"<<TOTAL[i]<<"\t"<<Per[i]<<"\n";
+
+                                    }
+                                }
+                                if(temp==0)
+                                {
+
+                                    cout<<"\tSorry,No Match found \n\n\n";
+                                }
+                                system("pause");
+                                system("clear");
                     }
                         void StudentRecord::Modify()
                         {
