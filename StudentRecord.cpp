@@ -24,6 +24,8 @@ class StudentRecord
                                     char tempname[100];
                                     int tempRoll;
                                     int temp;
+                                    char newname[100];
+                                    float newmth,newsci,newcomp,neweng,newpun;
 
     public:
     StudentRecord()
@@ -233,6 +235,99 @@ class StudentRecord
                                             TOTAL[i]=Mth[i]+Comp[i]+Sci[i]+Eng[i]+Pun[i];
                                             Per[i]=((float)TOTAL[i]/500)*100;
                                             cout<<"\t"<<NameofStudent[i]<<"\t"<<RollNumber[i]<<"\t  "<<Mth[i]<<"\t"<<Comp[i]<<"\t"<<Sci[i]<<"\t"<<Eng[i]<<"\t"<<Pun[i]<<"\t"<<TOTAL[i]<<"\t"<<Per[i]<<"\n";
+                                            break;
+                                    }
+                                }
+                                if(temp==0)
+                                {
+
+                                    cout<<"\tSorry,No Match found \n\n\n";
+                                }
+                                system("pause");
+                                system("cls");
+                    }
+                        void StudentRecord::Modify()
+                        {
+                            Header();
+                            temp=0;
+                            cout<<"\n\n\t\t\t\tSearched Record\n";
+                            cout<<"\t\t-------------------------------------------\n\n";
+                            cout<<"\tNAME\tROLL NO\t   MT\tCP\tSC\tEN\tPN\tTOTAL\t%ge\n";
+                            cout<<"\t---------------------------------------------------------------------\n";
+                            cout<<"\tEnter the Name of the Student ";
+                            cin>>tempname;
+                            cout<<"\tEnter the Roll Number : ";
+                            cin>>tempRoll;
+                                for(i=0;i<count;i++)
+                                {
+                                    if(strcmp(tempname,NameofStudent[i])==0&&tempRoll==RollNumber[i])
+                                    {
+                                           temp=1;
+                                           cout<<"\tEnter the Modified Name : ";
+                                           cin>>newname;
+                                           cout<<"\tEnter the Modified Maths Marks : ";
+                                           cin>>newmth;
+                                            if(newmth<0||newmth>100)
+                                            {
+                                                do
+                                                {
+                                                    cout<<"\tEnter the Marks in Maths Again : ";
+                                                    cin>>newmth;
+                                                }while(newmth<=0||newmth>100);
+                                            }
+                                           cout<<"\tEnter the Modified Computer Marks : ";
+                                           cin>>newcomp;
+                                            if(newcomp<0||newcomp>100)
+                                            {
+                                                do
+                                                {
+                                                    cout<<"\tEnter the Marks in Computer Again : ";
+                                                    cin>>newcomp;
+                                                }while(newcomp<=0||newcomp>100);
+                                            }
+                                                    cout<<"\tEnter the Modified Science Marks : ";
+                                           cin>>newsci;
+                                            if(newsci<0||newsci>100)
+                                            {
+                                                do
+                                                {
+                                                    cout<<"\tEnter the Marks in Science Again : ";
+                                                    cin>>newsci;
+                                                }while(newsci<=0||newsci>100);
+                                            }
+
+                                                    cout<<"\tEnter the Modified English Marks : ";
+                                           cin>>neweng;
+                                            if(neweng<0||neweng>100)
+                                            {
+                                                do
+                                                {
+                                                    cout<<"\tEnter the Marks in English Again : ";
+                                                    cin>>neweng;
+                                                }while(neweng<=0||neweng>100);
+                                            }
+
+                                                cout<<"\tEnter the Modified Punjabi Marks : ";
+                                           cin>>newpun;
+                                            if(newpun<0||newpun>100)
+                                            {
+                                                do
+                                                {
+                                                    cout<<"\tEnter the Marks in Punjabi Again : ";
+                                                    cin>>newpun;
+                                                }while(newpun<=0||newpun>100);
+                                            }
+                                            q=(char*)malloc(strlen(tempname)+1);
+                                            strcpy(q,tempname);
+                                            NameofStudent[i]=q;
+                                            Mth[i]=newmth;
+                                            Comp[i]=newcomp;
+                                            Sci[i]=newsci;
+                                            Eng[i]=neweng;
+                                            Pun[i]=newpun;
+                                            cout<<"\n\tRecord Updated \n";
+                                            break;
+
 
                                     }
                                 }
@@ -243,9 +338,6 @@ class StudentRecord
                                 }
                                 system("pause");
                                 system("clear");
-                    }
-                        void StudentRecord::Modify()
-                        {
                         }
                             void StudentRecord::Delete()
                             {
