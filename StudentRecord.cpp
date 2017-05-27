@@ -14,7 +14,7 @@ void Header(void)
 class StudentRecord
 {
     private:
-    int count,i;
+    int count,i,k;
     char name[100];
     char *q;
     char *NameofStudent[100];
@@ -118,6 +118,33 @@ class StudentRecord
     }
         void StudentRecord::ResultMenu()
         {
+           char choice;
+           do
+           {
+            Header();
+             cout<<"\n\n\t\t\t\t  RESULT MENU\n";
+             cout<<"\t\t-------------------------------------------\n\n";
+             cout<<"\t\t\t   1.)CLASS RESULT \n";
+             cout<<"\t\t\t   2.)STUDENT RESULT\n";
+             cout<<"\t\t\t   3.)MAIN MENU\n";
+             cout<<"\t\t\t   Enter Choice : ";
+             cin>>choice;
+             system("cls");
+                switch(choice)
+                {
+                case '1':
+                    DisplayAll();
+                    break;
+                case '2':
+                    Search();
+                    break;
+                case '3':
+                    MainMenu();
+                    break;
+                }
+
+           }while(choice!='3');
+
         }
             void StudentRecord::Create()
             {
@@ -341,11 +368,56 @@ class StudentRecord
                         }
                             void StudentRecord::Delete()
                             {
+                                    Header();
+                                    temp=0;
+                                    cout<<"\n\n\t\t\t\tRecord Delete Form\n";
+                                    cout<<"\t\t-------------------------------------------\n\n";
+                                    cout<<"\tNAME\tROLL NO\t   MT\tCP\tSC\tEN\tPN\tTOTAL\t%ge\n";
+                                    cout<<"\t---------------------------------------------------------------------\n";
+                                    cout<<"\tEnter the Name of the Student ";
+                                    cin>>tempname;
+                                    cout<<"\tEnter the Roll Number : ";
+                                    cin>>tempRoll;
+                                    temp=0;
+
+                                        for(i=0;i<count;i++)
+                                        {
+                                             if(strcmp(tempname,NameofStudent[i])==0&&tempRoll==RollNumber[i])
+                                             {
+                                                temp=1;
+                                                for(k=i;k<count-1;k++)
+                                                {
+
+                                                    q=(char*)malloc(strlen(NameofStudent[k+1])+1);
+                                                    strcpy(q,NameofStudent[k+1]);
+                                                    NameofStudent[k]=q;
+                                                    RollNumber[k]=RollNumber[k+1];
+                                                    Mth[k]=Mth[k+1];
+                                                    Sci[k]=Sci[k+1];
+                                                    Comp[k]=Comp[k+1];
+                                                    Eng[k]=Eng[k+1];
+                                                    Pun[k]=Pun[k+1];
+
+
+                                                }
+                                                count--;
+                                                cout<<"\n\tRecord Deleted ";
+                                                break;
+                                             }
+
+                                        }
+
+                                        if(temp==0)
+                                        {
+
+                                        cout<<"\tSorry,No Match found \n\n\n";
+                                        }
+                                system("pause");
+                                system("cls");
                             }
 int main()
 {
     class StudentRecord S;
     S.MainMenu();
-
     return 0;
 }
